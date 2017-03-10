@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace poor_clares_arundel.Controllers
+namespace PoorClaresArundel.Controllers
 {
     public class HomeController : Controller
     {
