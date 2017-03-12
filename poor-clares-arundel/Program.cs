@@ -13,7 +13,7 @@ namespace PoorClaresArundel
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "poor-clares-arundel"))
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
