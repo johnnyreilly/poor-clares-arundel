@@ -8,7 +8,7 @@ install:
 - ps: Install-Product node $env:nodejs_version
 
 before_build:
-- cmd: npm install --prefix src\poor-clares-arundel\
+- cmd: cd src\poor-clares-arundel && npm install 
 - cmd: dotnet restore src\poor-clares-arundel\poor-clares-arundel.csproj
 
 build_script:
