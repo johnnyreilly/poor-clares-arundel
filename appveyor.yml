@@ -1,0 +1,54 @@
+version: 1.0.{build}
+configuration: Release
+
+environment:
+  nodejs_version: "6"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+
+before_build:
+- cmd: dotnet restore src\poor-clares-arundel\poor-clares-arundel.csproj
+
+build_script:
+- cmd: dotnet publish src\poor-clares-arundel\poor-clares-arundel.csproj --output %appveyor_build_folder%\dist
+
+test_script:
+- ps: >-
+    cd src/poor-clares-arundel
+
+    npm run test
+
+    ../../registerTestResults.ps1
+# - cmd: dotnet restore test\poor-clares-arundel.Tests\poor-clares-arundel.Tests.csproj
+# - cmd: dotnet test test\poor-clares-arundel.Tests\poor-clares-arundel.Tests.csproj
+
+artifacts:
+- path: dist
+  name: WebApplication
+
+#######################################
+## different deployment environments 
+## which can be uncommented to trigger 
+## a deployment
+#######################################
+
+## proverb-api
+# environment:
+#   website_name: proverb-api
+#   website_psw:
+#     secure: Kxngm8+WBGPrHffxfy5Ow/rMFy1ZpmyrzTg3iSnUcc7KmVh20PvwVC2erKGVacsOOCTcYCkno+3HME82bhvhPQ==
+
+# deploy_script:
+# - cmd: '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:IisApp=''%appveyor_build_folder%\dist'' -dest:IisApp=''%website_name%'',ComputerName=''https://%website_name%.scm.azurewebsites.net/msdeploy.axd'',UserName=''$%website_name%'',Password=''%website_psw%'',IncludeAcls=''False'',AuthType=''Basic'' -enablerule:AppOffline -retryAttempts:2'
+
+
+# deploy:
+# - provider: WebDeploy
+#   server: https://poorclaresangular.scm.azurewebsites.net:443/msdeploy.axd?site=poorclaresangular
+#   website: poorclaresangular
+#   username:
+#     secure: havqx5eDApXZM/pv9T5Na4ghKRUS0CctLvqAD8rvwmE=
+#   password:
+#     secure: OfdyJRli28SPmISEI9TFL6IrCMr5DY1iNkXfRP2NGxSk2ATEwb4q9W+Bm4P9G3qG3L5JSChcYMAm4Cb2dnlxWQ==
+#   remove_files: true

@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\poor-clares-arundel\\bin\\Debug\\netcoreapp1.1\\poorclaresarundel.dll",
+            "program": "${workspaceRoot}\\src\\poor-clares-arundel\\bin\\Debug\\netcoreapp1.1\\poor-clares-arundel.dll",
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}\\src\\poor-clares-arundel",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
@@ -36,7 +36,7 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
-            "processId": "${command.pickProcess}"
+            "processId": "${command:pickProcess}"
         }
     ]
 }
