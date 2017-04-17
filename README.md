@@ -1,4 +1,4 @@
-﻿# Poor Clares Arundel [![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/poorclaresarundel?svg=true)](https://ci.appveyor.com/project/JohnReilly/poorclaresarundel)
+﻿# Poor Clares Arundel [![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/poor-clares-arundel?svg=true)](https://ci.appveyor.com/project/JohnReilly/poor-clares-arundel)
 
 The Poor Clares of Arundel's website - the source of: http://www.poorclaresarundel.org/
 
