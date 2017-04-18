@@ -15,8 +15,8 @@ function runTests(options) {
   };
 
   if (options.done) {
-    karmaConfig.plugins.push('karma-junit-reporter', 'karma-coverage');
-    karmaConfig.reporters.push('junit', 'coverage');
+    karmaConfig.plugins.push('karma-junit-reporter');
+    karmaConfig.reporters.push('junit');
   } else {
     karmaConfig.plugins.push('karma-notify-reporter');
     karmaConfig.reporters.push('notify');

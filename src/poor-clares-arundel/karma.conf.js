@@ -27,17 +27,7 @@ module.exports = function(config) {
 
     webpack: {
       devtool: 'inline-source-map',
-      debug: true,
-      module: {
-          loaders: webpackConfig.module.loaders,
-          postLoaders: [ { //delays coverage til after tests are run, fixing transpiled source coverage error
-            test: /\.ts(x?)$/,
-            exclude: [
-                path.resolve('test/'),
-                path.resolve('node_modules/')
-            ],
-            loader: 'istanbul-instrumenter' } ]
-      },
+      module: webpackConfig.module,
       plugins: [
         new webpack.DefinePlugin({
             __IN_DEBUG__: false,
@@ -62,27 +52,6 @@ module.exports = function(config) {
         warning: 'bgBlue',
         error: 'bgRed'
       }
-    },
-
-    coverageReporter: {
-        instrumenterOptions: {
-            istanbul: { noCompact: true }
-        },
-        reporters: [
-            {
-                dir: 'reports/coverage/',
-                subdir: '.',
-                type: 'html'
-            },{
-                dir: 'reports/coverage/',
-                subdir: '.',
-                type: 'cobertura'
-            }, {
-                dir: 'reports/coverage/',
-                subdir: '.',
-                type: 'json'
-            }
-        ]
     },
 
     junitReporter: {

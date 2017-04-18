@@ -5,19 +5,29 @@ var path = require('path');
 var webpack = require('webpack');
 var packageJson = require('./package.json');
 
+var vendorDependencies = Object.keys(packageJson['dependencies']);
+
+var babelOptions = {
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "es2016"
+  ]
+};
+
 module.exports = {
   cache: true,
   entry: {
     main: './src/main.ts',
 
     // common dependencies bundled together packaged with CommonsChunkPlugin in gulp/webpack.js
-    vendor: [
-      'babel-polyfill',
-      'angular',
-      'angular-animate',
-      'angular-ui-bootstrap',
-      'angular-ui-router'
-    ]
+    vendor: ['babel-polyfill'].concat(vendorDependencies).filter(function (dependency) {
+       return dependency !== 'bootstrap-sass' && dependency !== 'font-awesome';
+    })
   },
   output: {
     path: path.resolve(__dirname, './wwwroot/scripts'),
@@ -25,23 +35,32 @@ module.exports = {
     chunkFilename: '[chunkhash].js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.ts(x?)$/,
       exclude: /node_modules/,
-      loader: 'babel-loader?presets[]=es2016&presets[]=es2015!ts-loader'
+      use: [
+        {
+          loader: 'babel-loader',
+          options: babelOptions
+        },
+        {
+          loader: 'ts-loader'
+        }
+      ]
     }, {
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['es2016', 'es2015']
-      }
-    }]
-  },
+      use: [
+        {
+          loader: 'babel-loader',
+          options: babelOptions
+        }
+      ]
+    }]    },
   plugins: [ // Check gulp/webpack.js for build specific plugins
   ],
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js']
   },
 };
