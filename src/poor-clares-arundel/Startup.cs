@@ -45,10 +45,9 @@ namespace PoorClaresArundel
                 app.UseExceptionHandler("/Home/Error"); // TODO: Replace with something else; this URL doesn't hit anything now
             }
 
-            app.UseDefaultFiles(); // Means root URL requests will get index.html as well
-            app.UseStaticFiles();
-
             app.UseMvc();
+
+            app.UseDefaultFiles(); // Means root URL requests will get index.html as well
 
             // Fallback routing for SPA; 
             // serve up index.html if a request arrives without a "." in
@@ -61,6 +60,8 @@ namespace PoorClaresArundel
                     stopProcessing: true) 
                 }
             });
+
+            app.UseStaticFiles();
 
         }
     }
