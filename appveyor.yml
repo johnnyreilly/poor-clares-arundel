@@ -1,9 +1,6 @@
 version: 1.0.{build}
 configuration: Release
 
-environment:
-  nodejs_version: "6"
-
 install:
 - ps: Install-Product node $env:nodejs_version
 
@@ -36,6 +33,7 @@ artifacts:
 
 ## proverb-api
 environment:
+  nodejs_version: "6"
   website_name: poor-clares-arundel
   website_psw:
     secure: oWG6rvLLHqF+FvdQCLuRZWwTfOMbVpCsZDce/BHCvl9mNMR2tYcHwCY/7S2RdbPpk+niCCmigyxRjqdyqjmWlw==
