@@ -22,7 +22,7 @@ namespace PoorClaresArundel.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendPrayerRequest(PrayerRequest prayerRequest)
+        public IActionResult SendPrayerRequest([FromBody] PrayerRequest prayerRequest)
         {
             if (!ModelState.IsValid)
             {
