@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Rewrite.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PoorClaresArundel.Services;
 
 namespace PoorClaresArundel
 {
@@ -27,6 +28,10 @@ namespace PoorClaresArundel
         {
             // Add framework services.
             services.AddMvc();
+
+            services.Configure<ApplicationSettings>(Configuration);
+
+            services.AddScoped<IMailer, Mailer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
