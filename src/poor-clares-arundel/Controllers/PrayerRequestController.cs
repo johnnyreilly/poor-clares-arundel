@@ -1,19 +1,19 @@
 ﻿using PoorClaresArundel.Services;
 using PoorClaresArundel.Models;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace PoorClaresArundel.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PrayerRequestController : Controller
     {
-        readonly IApplicationSettings _props;
+        readonly ApplicationSettings _props;
         readonly IMailer _mailer;
         readonly ILogger<PrayerRequestController> _logger;
-        public PrayerRequestController(IApplicationSettings props, IMailer mailer, ILogger<PrayerRequestController> logger)
+        public PrayerRequestController(ApplicationSettings props, IMailer mailer, ILogger<PrayerRequestController> logger)
         {
             _props = props;
             _mailer = mailer;
@@ -59,7 +59,7 @@ namespace PoorClaresArundel.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("{0}\r\n\r\nStack Trace:\r\n\r\n{1}", ex.Message, ex.StackTrace);
+                _logger.LogError(ex.Message, ex);
 
                 return Ok(new PrayerRequestResponse
                 {
