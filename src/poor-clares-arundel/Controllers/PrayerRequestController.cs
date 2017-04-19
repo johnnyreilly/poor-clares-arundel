@@ -65,8 +65,7 @@ namespace PoorClaresArundel.Controllers
                 return Ok(new PrayerRequestResponse
                 {
                     Success = false,
-                    Text = ex.Message
-                    //Text = "Your prayer request has not been sent - please try mailing: " + _props.PrayerRequestEmailAddress
+                    Text = "Your prayer request has not been sent - please try mailing: " + _props.PrayerRequestEmailAddress
                 });
             }
 
