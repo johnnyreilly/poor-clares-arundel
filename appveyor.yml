@@ -31,12 +31,20 @@ artifacts:
 ## a deployment
 #######################################
 
-## proverb-api
+## PRODUCTION
 environment:
   nodejs_version: "6"
-  website_name: poor-clares-arundel
+  website_name: poorclaresangular
   website_psw:
-    secure: oWG6rvLLHqF+FvdQCLuRZWwTfOMbVpCsZDce/BHCvl9mNMR2tYcHwCY/7S2RdbPpk+niCCmigyxRjqdyqjmWlw==
+    secure: OfdyJRli28SPmISEI9TFL6IrCMr5DY1iNkXfRP2NGxSk2ATEwb4q9W+Bm4P9G3qG3L5JSChcYMAm4Cb2dnlxWQ==
+
+## TEST
+# environment:
+#   nodejs_version: "6"
+#   website_name: poor-clares-arundel
+#   website_psw:
+#     secure: oWG6rvLLHqF+FvdQCLuRZWwTfOMbVpCsZDce/BHCvl9mNMR2tYcHwCY/7S2RdbPpk+niCCmigyxRjqdyqjmWlw==
+
 
 deploy_script:
 - cmd: '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:IisApp=''%appveyor_build_folder%\dist'' -dest:IisApp=''%website_name%'',ComputerName=''https://%website_name%.scm.azurewebsites.net/msdeploy.axd'',UserName=''$%website_name%'',Password=''%website_psw%'',IncludeAcls=''False'',AuthType=''Basic'' -enablerule:AppOffline -retryAttempts:2'
