@@ -1,6 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
@@ -45,8 +44,8 @@ namespace PoorClaresArundel.Services
             // Init SmtpClient and send
             using (var client = new SmtpClient())
             {
-                client.LocalDomain = "some.domain.com";                
-                client.Connect("smtp.relay.uri", 25, SecureSocketOptions.None);
+                client.Connect(smtpClientHost, smtpClientHostPort);
+                client.Authenticate(smtpUserName, smtpPassword);
                 client.Send(mailMsg);
                 client.Disconnect(true);
             }
