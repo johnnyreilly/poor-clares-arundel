@@ -4,6 +4,8 @@ The Poor Clares of Arundel's website - the source of: http://www.poorclaresarund
 
 To my knowledge this is the first Convent with Continuous Deployment.
 
+Built on Angular 1.x and ASP.Net Core.
+
 ## Licence
 
 Copyright © 2014 [John Reilly](twitter.com/johnny_reilly). This project is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
