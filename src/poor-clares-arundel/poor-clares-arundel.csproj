@@ -14,6 +14,7 @@
   <Target Name="BuildClient" BeforeTargets="BeforePublish">
     <Exec Command="npm run build" />
     <ItemGroup>
+      <Content Include="Content\**\*" CopyToOutputDirectory="Always" />
       <DistFiles Include="wwwroot\**\*" />
       <Content Include="@(DistFiles)" CopytoPublishDirectory="Always" />
       <ContentWithTargetPath Include="@(DistFiles)" TargetPath="%(Identity)" CopyToPublishDirectory="Always" />
