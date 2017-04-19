@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace PoorClaresArundel.Controllers
 {
@@ -13,9 +14,9 @@ namespace PoorClaresArundel.Controllers
         readonly ApplicationSettings _props;
         readonly IMailer _mailer;
         readonly ILogger<PrayerRequestController> _logger;
-        public PrayerRequestController(ApplicationSettings props, IMailer mailer, ILogger<PrayerRequestController> logger)
+        public PrayerRequestController(IOptions<ApplicationSettings> propsAccessor, IMailer mailer, ILogger<PrayerRequestController> logger)
         {
-            _props = props;
+            _props = propsAccessor.Value;
             _mailer = mailer;
             _logger = logger;
         }
