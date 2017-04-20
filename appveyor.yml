@@ -12,14 +12,14 @@ build_script:
 - cmd: dotnet publish src\poor-clares-arundel\poor-clares-arundel.csproj --output %appveyor_build_folder%\dist
 
 test_script:
+- cmd: dotnet restore test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
+- cmd: dotnet test test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
 - ps: >-
     cd src/poor-clares-arundel
 
     npm run test
 
     ../../registerTestResults.ps1
-- cmd: dotnet restore test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
-- cmd: dotnet test test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
 
 artifacts:
 - path: dist
