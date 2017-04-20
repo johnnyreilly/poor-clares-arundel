@@ -18,8 +18,8 @@ test_script:
     npm run test
 
     ../../registerTestResults.ps1
-# - cmd: dotnet restore test\poor-clares-arundel.Tests\poor-clares-arundel.Tests.csproj
-# - cmd: dotnet test test\poor-clares-arundel.Tests\poor-clares-arundel.Tests.csproj
+- cmd: dotnet restore test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
+- cmd: dotnet test test\poor-clares-arundel.tests\poor-clares-arundel.tests.csproj
 
 artifacts:
 - path: dist

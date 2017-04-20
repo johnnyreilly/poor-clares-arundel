@@ -3,21 +3,29 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="mailkit" Version="1.14.2" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
   </ItemGroup>
+
+  <!-- Must be present for the Microsoft.Extensions.Logging.AzureAppServices to be installed (for logging in Azure) -->
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
   <Target Name="BuildClient" BeforeTargets="BeforePublish">
     <Exec Command="npm run build" />
     <ItemGroup>
       <ContentFiles Include="Content\**\*" />
       <Content Include="@(ContentFiles)" CopyToOutputDirectory="Always" />
       <ContentWithTargetPath Include="@(ContentFiles)" TargetPath="%(Identity)" CopyToOutputDirectory="Always" />
-
+      
       <DistFiles Include="wwwroot\**\*" />
       <Content Include="@(DistFiles)" CopytoPublishDirectory="Always" />
       <ContentWithTargetPath Include="@(DistFiles)" TargetPath="%(Identity)" CopyToPublishDirectory="Always" />
