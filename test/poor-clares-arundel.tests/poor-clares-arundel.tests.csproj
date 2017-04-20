@@ -10,6 +10,12 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
   </ItemGroup>
+
+  <!-- Must be present for the Microsoft.Extensions.Logging.AzureAppServices to be installed (for logging in Azure) -->
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\poor-clares-arundel\poor-clares-arundel.csproj" />
   </ItemGroup>
