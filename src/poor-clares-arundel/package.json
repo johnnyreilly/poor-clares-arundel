@@ -7,8 +7,7 @@
     "test": "karma start --reporters mocha,junit --single-run --browsers PhantomJS",
     "clean": "gulp delete-wwwroot-contents",
     "watch": "gulp watch",
-    "build": "gulp build",
-    "serve": "gulp serve"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -36,7 +35,6 @@
     "babel-preset-es2016": "^6.0.0",
     "del": "^2.0.2",
     "eslint": "^2.0.0",
-    "express": "^4.13.4",
     "glob": "^7.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",

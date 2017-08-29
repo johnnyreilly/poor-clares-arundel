@@ -79,12 +79,3 @@ gulp.task('watch', ['delete-wwwroot-contents'], function (done) {
     staticFiles.watch();
     tests.watch();
 });
-
-gulp.task('serve', ['watch'], function() {
-  // local as not required for build
-  var express = require('express')
-  var app = express()
-
-  app.use(express.static('wwwroot', {'index': 'index.html'}))
-  app.listen(3000);
-});
